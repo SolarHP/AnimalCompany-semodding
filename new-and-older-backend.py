@@ -1123,7 +1123,7 @@ def CaveDatabootstrap():
         "dailyMissions": None,
         "dailyMissionResetTime": 0,
         "serverTimeUnix": 1786139899,
-        "gameDataURL": "https://github.com/SolarHP/AnimalCompany-gamedata/blob/main/game-data/anyupdate.zip"
+        "gameDataURL": "https://github.com/SolarHP/AnimalCompany-semodding/blob/main/game-data/anyupdate.zip"
     }
     return json.dumps({"payload": json.dumps(payload)}), 200, {'Content-Type': 'application/json'}
 
