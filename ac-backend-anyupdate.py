@@ -541,20 +541,20 @@ def tesst():
 def authenticatecustom():
     username = request.args.get("username", "")
     if username == "M6Astraeus":
-        return jsonify ({"error": "YOU BEEN BANNED FROM SEM COMPANY SKID"}), 403
+        return jsonify ({"error": "<size=15><color=red>YOU BEEN BANNED FROM SEM COMPANY</color></size>"}), 403
 
     device_id = request.headers.get("X-Device-Id", "")
     if device_id and device_id in _banned_devices:
-        return jsonify({"error": "device_banned", "message": "This device has been banned."}), 403
+        return jsonify({"error": "device_banned", "message": "<size=15><color=red>THIS DEVICE BEEN BANNED FROM SEM COMPANY</color></size>"}), 403
     if normalize_username(username) in _load_banned_users():
-        return jsonify({"error": "username_banned", "message": "You have been banned."}), 403
+        return jsonify({"error": "username_banned", "message": "<size=15><color=red>YOU BEEN BANNED FROM SEM COMPANY</color></size>"}), 403
     with _temp_ban_lock:
         tb = _temp_bans.get(username.strip().lower())
     if tb and tb['until'] > time.time():
         rem = int(tb['until'] - time.time())
         rsn = f" Reason: {tb['reason']}" if tb.get('reason') else ''
         return jsonify({"error": "temp_banned",
-                        "message": f"You are temporarily banned for {rem//60}m {rem%60}s.{rsn}"}), 403
+                        "message": f"<size=15><color=red>You are temporarily banned for</color></size> <size=15>{rem//60}m {rem%60}s.{rsn}</size>"}), 403
 
     body = request.get_json(silent=True) or {}
     agent = (body.get("vars") or {}).get("clientUserAgent") \
